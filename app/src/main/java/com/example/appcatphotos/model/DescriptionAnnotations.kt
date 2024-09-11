@@ -1,0 +1,3 @@
+package com.jamiltondamasceno.aulatesteempregoandroid.api.model
+
+class DescriptionAnnotations
