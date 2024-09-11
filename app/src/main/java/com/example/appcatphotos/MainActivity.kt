@@ -13,7 +13,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import okhttp3.Response
+import kotlinx.coroutines.withContext
+import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -80,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
 
-                        WithContext(Dispatchers.Main) {
+                        withContext(Dispatchers.Main) {
                             galeriaAdapter.adicionarLista(listaUrlImagens)
                         }
                     }
