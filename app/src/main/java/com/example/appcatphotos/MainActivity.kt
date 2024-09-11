@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 var response: Response<Resultado>? = null
 
                 try {
-                    imgurAPI.pesquisarImagensGaleria("cats")
+                    response = imgurAPI.pesquisarImagensGaleria("cats")
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -71,17 +71,18 @@ class MainActivity : AppCompatActivity() {
 
                     val resultado = response.body()
                     if (resultado != null) {
-
                         val lista = resultado.data
                         val listaUrlImagens = mutableListOf<String>()
                         lista.forEach { dados ->
-                            val imagem = dados.images[0]
-                            val tipo = imagem.type
-                            if (tipo == "image/jpeg" || tipo == "image/png") {
-                                listaUrlImagens.add(imagem.link)
+                            if (dados.images != null) {
+                                println(dados.images)
+                                val imagem = dados.images[0]
+                                val tipo = imagem.type
+                                if (tipo == "image/jpeg" || tipo == "image/png") {
+                                    listaUrlImagens.add(imagem.link)
+                                }
                             }
                         }
-
                         withContext(Dispatchers.Main) {
                             galeriaAdapter.adicionarLista(listaUrlImagens)
                         }
